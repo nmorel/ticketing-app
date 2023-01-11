@@ -1,16 +1,14 @@
 import {
-  NotFoundException,
-  UnprocessableEntityException,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Put,
-  Post,
-  Param,
-  Delete,
   Body,
+  Controller,
+  Delete,
+  Get,
   HttpCode,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { randomDelay } from '../utils/random-delay';
 import { TicketsService } from './tickets.service';
@@ -25,10 +23,10 @@ export class TicketsController {
     return this.ticketsService.tickets();
   }
 
-  @Get()
-  async getTicket(id: number) {
+  @Get('/:ticketId')
+  async getTicket(@Param('ticketId') ticketId: string) {
     await randomDelay();
-    const ticket = await this.ticketsService.ticket(id);
+    const ticket = await this.ticketsService.ticket(Number(ticketId));
     if (ticket) return ticket;
     throw new NotFoundException();
   }
