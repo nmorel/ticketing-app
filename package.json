@@ -22,15 +22,16 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@tanstack/react-location": "^3.7.4",
     "core-js": "^3.6.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-router": "^6.3.0",
-    "react-router-dom": "6.3.0",
+    "react-query": "^3.39.2",
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
+    "wretch": "^2.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
