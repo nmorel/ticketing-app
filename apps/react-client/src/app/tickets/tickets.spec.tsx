@@ -48,7 +48,7 @@ describe('Tickets', () => {
     renderTickets();
 
     // Wait for the page to render
-    await screen.findByRole('heading');
+    await screen.findByText('Tickets');
 
     // Loader is shown
     expect(screen.queryByText('...')).toBeInTheDocument();

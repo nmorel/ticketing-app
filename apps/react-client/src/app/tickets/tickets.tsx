@@ -1,11 +1,8 @@
 import { Ticket } from '@acme/shared-models';
-import {
-  createMemoryHistory,
-  Link,
-  ReactLocation,
-} from '@tanstack/react-location';
+import { Link } from '@tanstack/react-location';
 import { useQuery } from 'react-query';
 import { fetchTickets } from '../../services/tickets';
+import { AddTicket } from '../add-ticket/add-ticket';
 import styles from './tickets.module.css';
 
 export function Tickets() {
@@ -15,6 +12,7 @@ export function Tickets() {
   );
   return (
     <div className={styles['tickets']}>
+      <AddTicket />
       <h2>Tickets</h2>
       {isSuccess ? (
         <ul>

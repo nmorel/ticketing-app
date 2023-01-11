@@ -34,11 +34,14 @@ export class TicketsService {
     return this.storedTickets.find((t) => t.id === id) ?? null;
   }
 
-  async newTicket(payload: { description: string }): Promise<Ticket> {
+  async newTicket(payload: {
+    description: string;
+    assigneeId: number | null;
+  }): Promise<Ticket> {
     const newTicket: Ticket = {
       id: this.nextId++,
       description: payload.description,
-      assigneeId: null,
+      assigneeId: payload.assigneeId,
       completed: false,
     };
 

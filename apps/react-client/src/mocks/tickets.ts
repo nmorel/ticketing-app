@@ -31,4 +31,7 @@ export const handlers = [
     }
     return res(ctx.status(200), ctx.json(ticket));
   }),
+  rest.post('/api/tickets', (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];

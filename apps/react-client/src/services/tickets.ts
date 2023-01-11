@@ -9,3 +9,10 @@ export function fetchTickets() {
 export function fetchTicket(ticketId: string) {
   return wretch(`/api/tickets/${ticketId}`).get().json<Ticket>();
 }
+
+export function addTicket(body: {
+  description: string;
+  assigneeId: number | null;
+}) {
+  return wretch(`/api/tickets`).post(body).json<Ticket>();
+}
