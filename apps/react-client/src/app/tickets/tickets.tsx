@@ -1,5 +1,9 @@
 import { Ticket } from '@acme/shared-models';
-import { Link } from '@tanstack/react-location';
+import {
+  createMemoryHistory,
+  Link,
+  ReactLocation,
+} from '@tanstack/react-location';
 import { useQuery } from 'react-query';
 import { fetchTickets } from '../../services/tickets';
 import styles from './tickets.module.css';
@@ -17,7 +21,7 @@ export function Tickets() {
           {data.map((ticket) => (
             <li key={ticket.id}>
               <Link to={`/${ticket.id}`} preload={1000}>
-                Ticket: {ticket.id}, {ticket.description}
+                Ticket #{ticket.id}: {ticket.description}
               </Link>
             </li>
           ))}

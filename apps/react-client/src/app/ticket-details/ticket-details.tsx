@@ -1,5 +1,5 @@
 import { Ticket } from '@acme/shared-models';
-import { useMatch } from '@tanstack/react-location';
+import { useMatch, Navigate } from '@tanstack/react-location';
 import { useQuery } from 'react-query';
 import { fetchTicket } from '../../services/tickets';
 import styles from './ticket-details.module.css';
@@ -22,16 +22,20 @@ export function TicketDetails() {
     }
   );
 
-  if (isError) {
-    console.log(error);
-    // TODO redirect to an error page
-    return null;
-  }
-
   return (
     <div className={styles['container']}>
       <h1>Ticket #{ticketId}</h1>
-      {isSuccess ? <div>{ticket.description}</div> : <span>...</span>}
+      {isError ? (
+        error.status === 404 ? (
+          <div>Not found</div>
+        ) : (
+          <div>Error {error.message}</div>
+        )
+      ) : isSuccess ? (
+        <div>{ticket.description}</div>
+      ) : (
+        <span>...</span>
+      )}
     </div>
   );
 }
