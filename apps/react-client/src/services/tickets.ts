@@ -30,3 +30,17 @@ export function setAssignee({
     return wretch(`/api/tickets/${ticketId}/assign`).delete().res();
   }
 }
+
+export function setCompleted({
+  ticketId,
+  completed,
+}: {
+  ticketId: number;
+  completed: boolean;
+}) {
+  if (completed) {
+    return wretch(`/api/tickets/${ticketId}/complete`).put().res();
+  } else {
+    return wretch(`/api/tickets/${ticketId}/complete`).delete().res();
+  }
+}
