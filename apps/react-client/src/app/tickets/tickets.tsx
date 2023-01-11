@@ -6,25 +6,24 @@ import { fetchTickets } from '../../services/tickets';
 import { AddTicket } from '../add-ticket/add-ticket';
 import styles from './tickets.module.css';
 
-const Status = ['all', 'incomplete', 'completed'] as const;
+const allStatuses = ['all', 'incomplete', 'completed'] as const;
+type Status = typeof allStatuses[number];
 
 export function Tickets() {
   const { data, isError, isSuccess, error } = useQuery<Ticket[], any>(
     'tickets',
     fetchTickets
   );
-  const [status, setStatus] = useState<typeof Status[number]>('all');
+  const [status, setStatus] = useState<Status>(allStatuses[0]);
   return (
-    <div className={styles['tickets']}>
+    <div className={styles['container']}>
       <AddTicket />
       <h2>Tickets</h2>
       <label>
         Status:{' '}
         <select
           value={status}
-          onChange={(evt) =>
-            setStatus(evt.target.value as typeof Status[number])
-          }
+          onChange={(evt) => setStatus(evt.target.value as Status)}
         >
           <option value="all">All</option>
           <option value="incomplete">Incomplete</option>
