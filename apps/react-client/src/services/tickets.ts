@@ -16,3 +16,17 @@ export function addTicket(body: {
 }) {
   return wretch(`/api/tickets`).post(body).json<Ticket>();
 }
+
+export function setAssignee({
+  ticketId,
+  assigneeId,
+}: {
+  ticketId: number;
+  assigneeId: number | null;
+}) {
+  if (assigneeId) {
+    return wretch(`/api/tickets/${ticketId}/assign/${assigneeId}`).put().res();
+  } else {
+    return wretch(`/api/tickets/${ticketId}/assign`).delete().res();
+  }
+}

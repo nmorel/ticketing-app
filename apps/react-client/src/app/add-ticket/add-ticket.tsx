@@ -42,6 +42,7 @@ export function AddTicket() {
         <label className={styles['assignee']}>
           Assignee
           <select name="assignee" disabled={!isSuccess}>
+            <option value=""></option>
             {isSuccess &&
               data.map((user) => (
                 <option key={user.id} value={user.id}>
