@@ -17,7 +17,13 @@ type LocationGenerics = MakeGenerics<{
 }>;
 
 const location = new ReactLocation<LocationGenerics>();
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 30000,
+    },
+  },
+});
 
 root.render(
   <QueryClientProvider client={queryClient}>
