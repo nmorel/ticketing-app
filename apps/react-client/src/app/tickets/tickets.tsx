@@ -15,6 +15,7 @@ export function Tickets() {
     fetchTickets
   );
   const [status, setStatus] = useState<Status>(allStatuses[0]);
+  const [descriptionFilter, setDescriptionFilter] = useState<string>('');
   return (
     <div className={styles['container']}>
       <AddTicket />
@@ -29,6 +30,15 @@ export function Tickets() {
           <option value="incomplete">Incomplete</option>
           <option value="completed">Completed</option>
         </select>
+      </label>{' '}
+      <label>
+        Search:{' '}
+        <input
+          type="text"
+          placeholder="Search"
+          value={descriptionFilter}
+          onChange={(ev) => setDescriptionFilter(ev.target.value)}
+        />
       </label>
       {isSuccess ? (
         <ul>
@@ -42,6 +52,14 @@ export function Tickets() {
                 case 'incomplete':
                   return !ticket.completed;
               }
+            })
+            .filter((ticket) => {
+              return (
+                !descriptionFilter ||
+                ticket.description
+                  ?.toLowerCase()
+                  ?.includes(descriptionFilter?.toLowerCase())
+              );
             })
             .map((ticket) => (
               <li key={ticket.id}>
